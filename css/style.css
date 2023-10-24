@@ -1,0 +1,55 @@
+body{
+    background-color: #d6cece;
+}
+
+.navbar-brand img{
+    width: 13%;
+}
+
+contacts-table{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#contacts-table thead{
+    color: white;
+    background-color: #007BFF;
+
+
+}
+
+#empty-list-text{
+    text-align: center;
+
+}
+.container{
+    background-color: rgba(255, 255, 255, 0.556);
+
+}
+
+.table thead{ 
+    /*NÃO FUNCIONA*/
+
+   background-color: #007BFF;
+
+}
+
+.check-icon{
+    color:#1E7E34;
+}
+
+.delete-icon{
+    color:#bd2130;
+}
+
+.edit-icon{
+    color:#007BFF;
+}
+
+.delete-btn{
+    background-color: transparent;
+    border:none;
+    padding: 0;
+
+}
+
