@@ -3,11 +3,12 @@
     $dbname="agenda"; //nome do banco de dados
     $user="root";
     $pass=""; //senha
+    $porta="3306"; 
 
    try{
         //PDO, é uma forma de acesso ao banco de dados;
 
-        $conn= new PDO("mysql:host=$host; dbname=$dbname", $user,$pass);
+        $conn= new PDO("mysql:host=$host; dbname=$dbname; port=$porta",$user,$pass);
         //Propriedades do PDO;
 
         //ATIVA O MODO DE ERROS:

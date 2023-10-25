@@ -33,18 +33,11 @@
                             </button> <!--Deletar-->
                          </td>
                     </tr>
-
-
-
-
                 <?php endforeach; ?>
                 
             </tbody>
 
-
-
        </table>
-
 
     <?php }
     

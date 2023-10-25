@@ -5,17 +5,15 @@ body{
 .navbar-brand img{
     width: 13%;
 }
-
 contacts-table{
     max-width: 800px;
     margin: 0 auto;
 }
 
-#contacts-table thead{
-    color: white;
+
+#contacts-table thead th{
     background-color: #007BFF;
-
-
+    color:white;
 }
 
 #empty-list-text{
@@ -23,16 +21,15 @@ contacts-table{
 
 }
 .container{
-    background-color: rgba(255, 255, 255, 0.556);
+    background-color: rgba(255, 255, 255, 0.836);
 
 }
 
-.table thead{ 
-    /*NÃO FUNCIONA*/
-
+/*.table thead{ 
    background-color: #007BFF;
+}*/
 
-}
+
 
 .check-icon{
     color:#1E7E34;
