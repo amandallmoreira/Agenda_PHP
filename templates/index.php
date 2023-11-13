@@ -27,7 +27,7 @@
                        
                     
                         <td class="actions">
-                            <a href="<?=$BASE_URL?>/show.php?id=<?=$contato["id"]?>"> <i class="fas fa-eye check-icon" > </i> </a> <!--Visualizar as informações-->
+                            <a href="<?=$BASE_URL?>/show.php?id=<?=$contato["id"]?>"> <i class="fas fa-eye check-icon" > </i> </a> <!--Visualizar as informações/ observações-->
                             <a href="#"> <i class="fas fa-edit edit-icon" > </i> </a> <!--Edite-->
                             <button type="submit"class="delete-btn"><i class="fas fa-times delete-icon" > </i>
                             </button> <!--Deletar-->

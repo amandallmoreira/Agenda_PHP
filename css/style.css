@@ -49,4 +49,27 @@ contacts-table{
     padding: 0;
 
 }
+#view-contact-container{
+    max-width: 20%;
+    margin: 0 auto !important;
+}
 
+.bold{
+    font-weight: bold !important;
+}
+
+#back-link-container{
+    display: block;
+    width: 500px;
+    margin: 30px auto !important;
+}
+
+#back-link{  /*NÃO FUNCIONA*/
+    border:1px solid #007BFF;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none!important;
+
+}
