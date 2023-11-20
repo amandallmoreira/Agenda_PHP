@@ -1,60 +1,55 @@
-body{
-    background-color: #d6cece;
+:root{
+    --branco: #ffffff;
+    --azul: #007bff;
+    --verde:  #1e7e34;
+    --vermelho: #bd2130;
 }
-
-.navbar-brand img{
+.navbar-brand img {
     width: 13%;
+    padding: 10px;
 }
-contacts-table{
+#logo{
+    width: 30%; 
+}
+#contatcts-table {
     max-width: 800px;
     margin: 0 auto;
-}
-
-
-#contacts-table thead th{
-    background-color: #007BFF;
-    color:white;
-}
-
-#empty-list-text{
     text-align: center;
-
-}
-.container{
-    background-color: rgba(255, 255, 255, 0.836);
-
 }
 
-/*.table thead{ 
-   background-color: #007BFF;
-}*/
-
-
-
-.check-icon{
-    color:#1E7E34;
+#contatcts-table thead th{
+    color: var(--branco);
+    background-color:var(--azul);
 }
 
-.delete-icon{
-    color:#bd2130;
+#empty-list-text {
+    text-align: center;
 }
 
-.edit-icon{
-    color:#007BFF;
+.check-icon {
+    color:var(--verde);
 }
 
-.delete-btn{
+.delete-icon {
+    color: var(--vermelho);
+}
+
+.edit-icon {
+    color:var(--azul);
+}
+
+.delete-btn {
     background-color: transparent;
-    border:none;
+    border: none !important;
     padding: 0;
-
 }
+
 #view-contact-container{
     max-width: 20%;
     margin: 0 auto !important;
 }
 
-.bold{
+.bold {
     font-weight: bold !important;
 }
 
@@ -64,12 +59,15 @@ contacts-table{
     margin: 30px auto !important;
 }
 
-#back-link{  /*NÃO FUNCIONA*/
-    border:1px solid #007BFF;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 5px;
+#back-link{
+    border: 1px solid var(--azul);
+    color:var(--branco);
+    background-color:var(--azul);
+    border-radius: 4px;
     padding: 5px;
-    text-decoration: none!important;
+    text-decoration: none;
+}
 
+.delete-form{
+    display: inline-block !important;
 }

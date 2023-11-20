@@ -1,42 +1,92 @@
-<?php 
-include_once("conexao.php");
-include_once("url.php");
-$id;
+<?php
 
-if(!empty($_GET)){  //SÓ ENTRA NO IF SE FOR VERDADEIRO, ! É NEGAÇÃO, SE NEGA UM f ELE VIRA v.
-//SÓ ENTRA AQUI SE O $_GET NÃO FOR VAZIO.    
-    $id=$_GET["id"];
+    include_once("conexao.php");    
+    include_once("url.php");
+    
+    $id;
+    $data = $_POST;
 
-}//fim IF
+    // Trata requisições POST do formulário
+    if (!empty($data)){
 
-/*FUNÇÃO EMPTY É NATIVA DO PHP E RECEBE UM ARGUMENTO. SE ESSE ARGUMENTO TIVER VAZIO ELE RETORNA TRUE SE ESTIVER CHEIO RETORNA FALSO*/ 
+        if ($data["type"]=="create"){
+            try {
+                $nome = $data['nome'];
+                $telefone = $data['fone'];
+                $obs = $data['observacao'];
 
-/* ! NEGA */ 
+                $queryInsert = "INSERT INTO contatos (nome, telefone, observacao) VALUES (:nome, :telefone, :obs)";
+                $stmt = $conn -> prepare($queryInsert);
+                $stmt -> bindParam(":nome", $nome);
+                $stmt -> bindParam(":telefone", $telefone);
+                $stmt -> bindParam(":obs", $obs);
+                $stmt -> execute();
+                header("Location:".$BASE_URL."/../templates/index.php" );
+            } // FIM TRY
+            catch (PDOException $e)
+            {
+                $erro = $e -> getMessage();
+                echo $erro;
+            }// fim catch
+        } // FIM IF INSERTION
+        elseif ($data["type"]=="edit"){
+            try {
+                $id = $data['id'];
+                $nome = $data['nome'];
+                $telefone = $data['fone'];
+                $obs = $data['observacao'];
 
-if(!empty($id)){ //$id possui algum valor
-    $queryIdConsulta="SELECT id, nome,telefone, observacao FROM contatos WHERE id=:id";
-    $stmt=$conn->prepare($queryIdConsulta);
-    $stmt->bindParam(":id", $id);
-    $stmt->execute();
-    $onlyContato=$stmt->fetch(); //retorna apenas o contato referente a coluna ID
-}
+                $queryUpdate = "UPDATE contatos SET nome= :nome, telefone=:telefone, observacao=:obs WHERE id = :id";
+                $stmt = $conn -> prepare($queryUpdate);
+                $stmt -> bindParam(":nome", $nome);
+                $stmt -> bindParam(":telefone", $telefone);
+                $stmt -> bindParam(":obs", $obs);
+                $stmt -> bindParam(":id", $id);
+                $stmt -> execute();
+                header("Location:".$BASE_URL."/../templates/index.php" );
+            } //FIM TRY
+            catch (PDOException $e)
+            {
+                $erro = $e -> getMessage();
+                echo $erro;
+            }// fim catch
+        } //FIM IF EDITAR
+        else{ // else para tratar requisições POST referente a deletar
+            try{
+                $id = $data['id'];
+                $queryDelete = "DELETE FROM contatos WHERE id = :id";
+                $stmt = $conn -> prepare($queryDelete);
+                $stmt -> bindParam (":id", $id);
+                $stmt -> execute();
+                header("Location:".$BASE_URL."/../templates/index.php");
+            } // FIM TRY
+            catch (Exception $e){
+                echo $e -> getMessage();
+            }
+        }// FIM DELETAR 
+    }// Fim IF chamadas POST
+    else{ // Trata observação e lista de todos os contatos
 
-if(!empty($id)){ //não retorna nada, 
-    $query="SELECT*FROM contatos WHERE id=:id";
-    $stmt=$conn->prepare($query);
-    $stmt->bindParam(":id",$id);  
-    $stmt->execute();
-    $onlyContato=$stmt->fetch();  //Retorna apenas a linha referente ao ID.
-}
+        /* Função EMPTY é nativa do PHP e recebe um argumento. Se esse argumento estiver vazio retorna TRUE e se esse argumento não estiver vazio retorna FALSE*/
 
-else{ //vai ser a listagem de todos os contatos da tabela CONTATOS
-    $query="SELECT*FROM contatos"; //string que manipula a tabela SQL;
-    $stmt=$conn->prepare($query);
-    $stmt->execute();  //executa uma consulta no Banco de Dados;
-    $AllContatos=[];
-    $AllContatos=$stmt->fetchAll();  //Retorna todas as linhas que tem na tabela Contatos.
+        if (!empty($_GET)) { // Entra no IF senão for Vazio (! significa negação no IF)
+            
+            $id = $_GET["id"];
+        }
 
-}//fim ELSE
-
+        if (!empty($id)){
+            $query = "SELECT * FROM contatos WHERE id= :id";
+            $stmt = $conn -> prepare($query);
+            $stmt -> bindParam(":id", $id);
+            $stmt -> execute();
+            $onlyContato = $stmt -> fetch();
+        }else{ // Lista de todos os contatos na tabela
+            $query = "SELECT * FROM contatos";
+            $stmt = $conn->prepare($query);
+            $stmt -> execute();
+            $AllContatos = [];
+            $AllContatos = $stmt -> fetchAll(); //Retorna todas as linhas da tabela
+        } //FIM ELSE
+    }
 
 ?>

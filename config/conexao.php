@@ -1,25 +1,20 @@
-<?php 
-    $host="localhost"; //ou 127.0.0.1
-    $dbname="agenda"; //nome do banco de dados
-    $user="root";
-    $pass=""; //senha
-    $porta="3306"; 
+<?php
 
-   try{
-        //PDO, é uma forma de acesso ao banco de dados;
+    $host = "localhost";
+    $dbname = "agenda";
+    $user = "root";
+    $pass = "";
+    $porta = "3306";
 
-        $conn= new PDO("mysql:host=$host; dbname=$dbname; port=$porta",$user,$pass);
-        //Propriedades do PDO;
+    try{
+        $conn = new PDO("mysql:host=$host; dbname=$dbname; port=$porta", $user, $pass);
 
-        //ATIVA O MODO DE ERROS:
-
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   }
-   catch(PDOException $e){
-        $erro=$e->getMessage();
+        //ATIVA O MODO DE ERRO
+        $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch(PDOException $e){
+        $erro = $e -> getMessage();
         echo $erro;
-   }
-
-
+    }
 
 ?>
